@@ -675,7 +675,7 @@
                         <li>
                             <span class="contact-label">Email</span>
                             <div class="contact-value">
-                                <a href="/cdn-cgi/l/email-protection#2d485b4e424246196d4a404c4441034e4240"><span class="__cf_email__" data-cfemail="b4d1c2d7dbdbdf80f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</span></a>
+                                <a href="#" id="email-link"></a>
                             </div>
                         </li>
                         <li>
@@ -704,4 +704,35 @@
         </div>
     </section>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></scrip
+    <script>
+        // Display email without protection
+        const emailLink = document.getElementById('email-link');
+        const email = 'evcook4' + '@' + 'gmail.com';
+        emailLink.href = 'mailto:' + email;
+        emailLink.textContent = email;
+        
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
